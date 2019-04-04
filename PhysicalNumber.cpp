@@ -43,7 +43,7 @@ PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& other)
   {
     throw "diffrent unit";
   }
-  this->value += ((double)unit_value[other.unit]/unit_value[this->unit])*other.value;
+  this->value += ((double)unit_value[this->unit]*other.value);
   return *this;
 }
 
@@ -53,7 +53,7 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other)
   {
     throw "diffrent unit";
   }
-  this->value -= ((double)unit_value[other.unit]/unit_value[this->unit])*other.value;
+  this->value -= ((double)unit_value[this->unit]*other.value);
   return *this;
 }
 
