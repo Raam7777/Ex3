@@ -18,8 +18,8 @@ namespace ariel {
     //math operation
     PhysicalNumber operator+(const PhysicalNumber& other) const;
     PhysicalNumber operator-(const PhysicalNumber& other) const;
-    PhysicalNumber& operator+=(const PhysicalNumber& other) const;
-    PhysicalNumber& operator-=(const PhysicalNumber& other) const;
+    PhysicalNumber& operator+=(const PhysicalNumber& other);
+    PhysicalNumber& operator-=(const PhysicalNumber& other);
 
     //onary operation
     const PhysicalNumber operator+() const;

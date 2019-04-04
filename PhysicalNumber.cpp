@@ -23,22 +23,38 @@ PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& other) const
   {
     throw "diffrent unit";
   }
-  return *this;
+  double v = unit_value[unit]*(this->value/double(unit_value[this->unit]) + other.value/double(unit_value[other.unit]));
+  return PhysicalNumber(v, this->unit);
 }
 
 PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& other) const
 {
-  return *this - other;
+  if(this->unit/3 != other.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[unit]*(this->value/double(unit_value[this->unit]) - other.value/double(unit_value[other.unit]));
+  return PhysicalNumber(v, this->unit);
 }
 
-PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& other) const
+PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& other)
 {
-  return *this += other;
+  if(this->unit/3 != other.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  this->value = (double)unit_value[unit]*(this->value + other.value);
+  return *this;
 }
 
-PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other) const
+PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other)
 {
-  return *this -= other;
+  if(this->unit/3 != other.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  this->value = (double)unit_value[unit]*(this->value - other.value);
+  return *this;
 }
 
 
@@ -55,32 +71,62 @@ const PhysicalNumber PhysicalNumber::operator-() const
 
 bool ariel::operator==(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v == right.value;
 }
 
 bool ariel::operator<=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v <= right.value;
 }
 
 bool ariel::operator>=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v >= right.value;
 }
 
 bool ariel::operator<(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v < right.value;
 }
 
 bool ariel::operator>(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v > right.value;
 }
 
 bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return true;
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v != right.value;
 }
 
 
@@ -98,7 +144,7 @@ PhysicalNumber& PhysicalNumber::operator--()
 
 ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
 {
-  return stream << other.value << "[" <<unit_string[other.unit] << "]";
+  return stream << other.value << "[" <<unit_name[other.unit] << "]";
 }
 
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
