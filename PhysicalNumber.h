@@ -13,6 +13,7 @@ namespace ariel {
 
     //constractors
     PhysicalNumber(double _value, Unit _unit);
+    PhysicalNumber(const PhysicalNumber& other);
 
     //math operation
     PhysicalNumber operator+(const PhysicalNumber& other) const;

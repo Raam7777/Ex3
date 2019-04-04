@@ -43,32 +43,32 @@ const PhysicalNumber PhysicalNumber::operator-() const
 }
 
 
-bool operator==(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator==(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
 
-bool operator<=(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator<=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
 
-bool operator>=(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator>=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
 
-bool operator<(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator<(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
 
-bool operator>(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator>(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
 
-bool operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
+bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
   return true;
 }
