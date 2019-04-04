@@ -19,7 +19,7 @@ PhysicalNumber::PhysicalNumber(const PhysicalNumber& other)
 
 PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& other) const
 {
-  if(this->unit/3 != other->unit/3)
+  if(this->unit/3 != other.unit/3)
   {
     throw "diffrent unit";
   }
