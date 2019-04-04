@@ -11,9 +11,19 @@ PhysicalNumber::PhysicalNumber(double _value, Unit _unit)
   unit = _unit;
 }
 
+PhysicalNumber::PhysicalNumber(const PhysicalNumber& other)
+{
+  value = other.value;
+  unit = other.unit;
+}
+
 PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& other) const
 {
-    return *this + other;
+  if(this->unit/3 != other->unit/3)
+  {
+    throw "diffrent unit";
+  }
+  return *this;
 }
 
 PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& other) const
