@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "Unit.h"
 #include "PhysicalNumber.h"
 
@@ -134,22 +135,24 @@ bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 
 PhysicalNumber& PhysicalNumber::operator++()
 {
-  ++this->value;
+  this->value++;
   return *this;
 }
 
 PhysicalNumber& PhysicalNumber::operator--()
 {
-  --this->value;
+  this->value--;
   return *this;
 }
 
 ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
 {
-  return stream << other.value << "[" <<unit_name[other.unit] << "]";
+  return stream << other.value << "[" << unit_name[other.unit] << "]";
 }
 
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
+  // stream >> other.value;
+  // stream >> other.unit;
   return stream;
 }
