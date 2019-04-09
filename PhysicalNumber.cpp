@@ -150,9 +150,39 @@ ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
   return stream << other.value << "[" << unit_name[other.unit] << "]";
 }
 
+
+// static istream& getAndCheckNextCharIs(istream& input, char expectedChar)
+// {
+//   char actualChar;
+//   input >> actualChar;
+//   if (!input) return input;
+//
+//   if (actualChar!=expectedChar)
+//       input.setstate(ios::failbit);
+//   return input;
+// }
+
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
-  // stream >> other.value;
-  // stream >> other.unit;
+  // double _value;
+  // Unit _unit;
+  //
+  //   ios::pos_type startPosition = stream.tellg();
+  //
+  //   if ( (!(stream >> _value))                 ||
+  //        (!getAndCheckNextCharIs(stream,'[')) ||
+  //        (!(stream >> _unit))                 ||
+  //        (!(getAndCheckNextCharIs(stream,']'))) ) {
+  //
+  //       // rewind on error
+  //       auto errorState = stream.rdstate(); // remember error state
+  //       stream.clear(); // clear error so seekg will work
+  //       stream.seekg(startPosition); // rewind
+  //       stream.clear(errorState); // set back the error flag
+  //   } else {
+  //       other.value = _value;
+  //       other.unit = _unit;
+  //   }
+
   return stream;
 }

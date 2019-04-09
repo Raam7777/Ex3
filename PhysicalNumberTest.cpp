@@ -88,11 +88,9 @@ int main() {
     .CHECK_OUTPUT(+massa_a, "10[ton]")
     .CHECK_OUTPUT(-massa_b, "-500[kg]")
 
-   //  .setname("My test - add and subtract: ++, -- ")
-   //  time_b++;
-   //  .CHECK_OUTPUT(time_b, "30.75[min]")
-   // time_b--;
-   //  .CHECK_OUTPUT(time_b, "29.75[min]")
+    .setname("My test - add and subtract: ++, -- ")
+    .CHECK_OUTPUT(++time_b, "30.75[min]")
+    .CHECK_OUTPUT(--time_b, "29.75[min]")
 
     .setname("My test - IO-stream: <<, >>")
     .CHECK_OK(istringstream("5[kg]") >> way_a)
