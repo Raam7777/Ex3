@@ -36,6 +36,8 @@ namespace ariel {
     //add and subtract
     PhysicalNumber& operator++();
     PhysicalNumber& operator--();
+    const PhysicalNumber operator++(int _value);
+    const PhysicalNumber operator--(int _value);
 
     //IO-stream
     friend ostream& operator<<(ostream& stream, const PhysicalNumber& other);

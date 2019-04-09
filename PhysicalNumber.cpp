@@ -135,32 +135,31 @@ bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 
 PhysicalNumber& PhysicalNumber::operator++()
 {
-  this->value++;
-  return *this;
+  this->value = this->value + 1;
+  return (*this);
 }
 
 PhysicalNumber& PhysicalNumber::operator--()
 {
-  this->value--;
-  return *this;
+  this->value = this->value - 1;
+  return (*this);
+}
+
+const PhysicalNumber PhysicalNumber::operator++(int _value){
+  PhysicalNumber temp = *this;
+  this->value = this->value + 1;
+  return temp;
+}
+const PhysicalNumber PhysicalNumber::operator--(int _value){
+  PhysicalNumber temp = *this;
+  this->value = this->value - 1;
+  return temp;
 }
 
 ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
 {
   return stream << other.value << "[" << unit_name[other.unit] << "]";
 }
-
-
-// static istream& getAndCheckNextCharIs(istream& input, char expectedChar)
-// {
-//   char actualChar;
-//   input >> actualChar;
-//   if (!input) return input;
-//
-//   if (actualChar!=expectedChar)
-//       input.setstate(ios::failbit);
-//   return input;
-// }
 
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
