@@ -124,7 +124,12 @@ bool ariel::operator>(const PhysicalNumber& left, const PhysicalNumber& right)
 
 bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return !(left.value == right.value);
+  if(left.unit/3 != right.unit/3)
+  {
+    throw "diffrent unit";
+  }
+  double v = unit_value[right.unit]*(left.value/double(unit_value[left.unit]));
+  return v != right.value;
 }
 
 
