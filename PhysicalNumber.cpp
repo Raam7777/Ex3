@@ -124,7 +124,7 @@ bool ariel::operator>(const PhysicalNumber& left, const PhysicalNumber& right)
 
 bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 {
-  return !(left.value == right.value);
+  return !(left == right);
 }
 
 
