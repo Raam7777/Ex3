@@ -150,7 +150,7 @@ const PhysicalNumber PhysicalNumber::operator++(int _value){
 }
 const PhysicalNumber PhysicalNumber::operator--(int _value){
   PhysicalNumber temp = *this;
-  ++this->value;
+  --this->value;
   return temp;
 }
 
