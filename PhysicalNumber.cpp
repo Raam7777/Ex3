@@ -63,14 +63,15 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other)
 
 const PhysicalNumber PhysicalNumber::operator+() const
 {
-  if(this->value<0)
-    -1*this->value;
+  if(this->value < 0){
+    return PhysicalNumber(-1*(this->value), this->unit);
+  }
   return PhysicalNumber(this->value, this->unit);
 }
 
 const PhysicalNumber PhysicalNumber::operator-() const
 {
-  return PhysicalNumber(-(this->value), this->unit);
+  return PhysicalNumber(-1*(this->value), this->unit);
 }
 
 
