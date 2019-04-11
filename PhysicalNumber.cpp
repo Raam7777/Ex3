@@ -164,8 +164,9 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
   string _value, _unit, is;
   stream>>is;
-  _value = is.substr(0, is.find("["));
-  other.value = stod(_value);
+
+  other.value = stod(is.substr(0, is.find("[")));
+
   _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
   for(int i=0; i<9; i++) {
     if(unit_name[i] == _unit) {
