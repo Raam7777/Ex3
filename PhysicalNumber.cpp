@@ -130,24 +130,24 @@ bool ariel::operator!=(const PhysicalNumber& left, const PhysicalNumber& right)
 
 PhysicalNumber& PhysicalNumber::operator++()
 {
-  this->value = this->value + 1;
+  ++this->value;
   return (*this);
 }
 
 PhysicalNumber& PhysicalNumber::operator--()
 {
-  this->value = this->value - 1;
+  --this->value;
   return (*this);
 }
 
 const PhysicalNumber PhysicalNumber::operator++(int _value){
   PhysicalNumber temp = *this;
-  this->value = this->value + 1;
+  ++this->value;
   return temp;
 }
 const PhysicalNumber PhysicalNumber::operator--(int _value){
   PhysicalNumber temp = *this;
-  this->value = this->value - 1;
+  ++this->value;
   return temp;
 }
 
@@ -156,27 +156,19 @@ ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
   return stream << other.value << "[" << unit_name[other.unit] << "]";
 }
 
+
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
-  // double _value;
-  // Unit _unit;
-  //
-  //   ios::pos_type startPosition = stream.tellg();
-  //
-  //   if ( (!(stream >> _value))                 ||
-  //        (!getAndCheckNextCharIs(stream,'[')) ||
-  //        (!(stream >> _unit))                 ||
-  //        (!(getAndCheckNextCharIs(stream,']'))) ) {
-  //
-  //       // rewind on error
-  //       auto errorState = stream.rdstate(); // remember error state
-  //       stream.clear(); // clear error so seekg will work
-  //       stream.seekg(startPosition); // rewind
-  //       stream.clear(errorState); // set back the error flag
-  //   } else {
-  //       other.value = _value;
-  //       other.unit = _unit;
-  //   }
+  string _value, _unit, is;
+  stream>>is;
+  _value = is.substr(0, is.find("["));
+  other.value = stod(_value);
+  _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
+  for(int i=0; i<9; i++) {
+    if(unit_name[i] == _unit) {
+      other.unit = (Unit)i;
+    }
+  }
 
   return stream;
 }

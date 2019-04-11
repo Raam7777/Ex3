@@ -18,7 +18,7 @@ int main() {
   int signal = setjmp(badkan::longjmp_buffer);
   if (signal == 0) {
 
-    // BASIC TESTS - DO NOT CHANGE
+    // BASIC TESTS - DO NOT CHANG
     PhysicalNumber a(2, Unit::KM);
     PhysicalNumber b(300, Unit::M);
     PhysicalNumber c(2, Unit::HOUR);
