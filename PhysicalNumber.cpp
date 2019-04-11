@@ -63,7 +63,7 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other)
 
 const PhysicalNumber PhysicalNumber::operator+() const
 {
-  return PhysicalNumber(this->value, this->unit);
+  return PhysicalNumber(abs(this->value), this->unit);
 }
 
 const PhysicalNumber PhysicalNumber::operator-() const
