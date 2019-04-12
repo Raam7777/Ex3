@@ -162,17 +162,41 @@ ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
 
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
-  string _value, _unit, is;
+  string _value="", _unit, is;
+  bool flag = true;
   stream>>is;
 
-  other.value = stod(is.substr(0, is.find("[")));
+  if(_value.length()==-1){
+    flag=false;
+  }
 
-  _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
-  for(int i=0; i<9; i++) {
-    if(unit_name[i] == _unit) {
-      other.unit = (Unit)i;
+  if(flag){
+    _value = is.substr(0, is.find("["));
+    try{
+      other.value = stod(_value);
+    }catch(exception& e){
+      flag = false;
+      return stream;
     }
   }
 
+  if(flag){
+    _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
+    for(int i=0; i<9; i++) {
+      if(unit_name[i] == _unit) {
+        other.unit = (Unit)i;
+      }
+      else{
+        flag = false;
+      }
+    }
+  }
+
+  if(!flag){
+    auto errorState = stream.rdstate();
+    stream.clear(); // clear error so seekg will work
+    //stream.seekg(startPosition); // rewind
+    stream.clear(errorState); // set back the error flag
+  }
   return stream;
 }
