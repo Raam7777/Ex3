@@ -169,7 +169,7 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
   _value = is.substr(0, is.find("["));
   _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
 
-  if(_value.length()==0 || _unit.length()==0){
+  if(_value.length()==1 || _unit.length()==1){
     flag=false;
   }
 
@@ -194,14 +194,6 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
     }
   }
 
-
-  if(is.find("[")==string::npos||is.find("]")==string::npos) {
-    auto errorState = stream.rdstate();
-    stream.clear();
-    stream.seekg(startPosition);
-    stream.clear(errorState);
-    return stream;
-  }
   if(!flag){
     auto errorState = stream.rdstate();
     stream.clear();
