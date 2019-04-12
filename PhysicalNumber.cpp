@@ -162,16 +162,19 @@ ostream& ariel::operator<<(ostream& stream, const PhysicalNumber& other)
 
 istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 {
+  ios::pos_type startPosition = stream.tellg();
   string _value="", _unit, is;
   bool flag = true;
   stream>>is;
+  _value = is.substr(0, is.find("["));
+  _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
 
-  if(_value.length()==-1){
+  if(_value.length()==0 || _unit.length()==0){
     flag=false;
   }
 
   if(flag){
-    _value = is.substr(0, is.find("["));
+
     try{
       other.value = stod(_value);
     }catch(exception& e){
@@ -181,8 +184,7 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
   }
 
   if(flag){
-    _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
-    for(size_t i=0; i<9; i++) {
+    for(int i=0; i<9; i++) {
       if(unit_name[i] == _unit) {
         other.unit = (Unit)i;
       }
@@ -192,10 +194,12 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
     }
   }
 
+
+
   if(!flag){
     auto errorState = stream.rdstate();
     stream.clear();
-    //stream.seekg(startPosition);
+    stream.seekg(startPosition);
     stream.clear(errorState);
   }
   return stream;
