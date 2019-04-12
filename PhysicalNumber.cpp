@@ -182,7 +182,7 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 
   if(flag){
     _unit = is.substr(is.find("[")+1, is.length() - is.find("[")-2);
-    for(int i=0; i<9; i++) {
+    for(size_t i=0; i<9; i++) {
       if(unit_name[i] == _unit) {
         other.unit = (Unit)i;
       }
@@ -194,9 +194,9 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
 
   if(!flag){
     auto errorState = stream.rdstate();
-    stream.clear(); // clear error so seekg will work
-    //stream.seekg(startPosition); // rewind
-    stream.clear(errorState); // set back the error flag
+    stream.clear();
+    //stream.seekg(startPosition);
+    stream.clear(errorState);
   }
   return stream;
 }
