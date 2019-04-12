@@ -195,7 +195,13 @@ istream& ariel::operator>>(istream& stream, PhysicalNumber& other)
   }
 
 
-
+  if(is.find("[")==string::npos||is.find("]")==string::npos) {
+    auto errorState = stream.rdstate();
+    stream.clear();
+    stream.seekg(startPosition);
+    stream.clear(errorState);
+    return stream;
+  }
   if(!flag){
     auto errorState = stream.rdstate();
     stream.clear();
