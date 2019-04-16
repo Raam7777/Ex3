@@ -20,22 +20,25 @@ PhysicalNumber::PhysicalNumber(const PhysicalNumber& other)
 
 PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& other) const
 {
+
   if(this->unit/3 != other.unit/3)
   {
     throw "diffrent unit";
   }
   double v = unit_value[unit]*(this->value/double(unit_value[this->unit]) + other.value/double(unit_value[other.unit]));
   return PhysicalNumber(v, this->unit);
+
 }
 
 PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& other) const
 {
-  if(this->unit/3 != other.unit/3)
+ if(this->unit/3 != other.unit/3)
   {
     throw "diffrent unit";
   }
   double v = unit_value[unit]*(this->value/double(unit_value[this->unit]) - other.value/double(unit_value[other.unit]));
   return PhysicalNumber(v, this->unit);
+
 }
 
 PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& other)
@@ -63,9 +66,9 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& other)
 
 const PhysicalNumber PhysicalNumber::operator+() const
 {
-  if(this->value < 0){
+  /*if(this->value < 0){
     return PhysicalNumber(-1*(this->value), this->unit);
-  }
+  }*/
   return PhysicalNumber(this->value, this->unit);
 }
 
